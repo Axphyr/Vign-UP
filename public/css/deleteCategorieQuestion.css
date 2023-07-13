@@ -1,0 +1,81 @@
+.body-container {
+    width: 100%;
+}
+
+.body-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.all_txt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 50px 19px 19px;
+}
+
+.all_txt a {
+    text-decoration: none;
+    color: #0060da;
+    font-size: 17px;
+}
+
+.all_txt .avertissement {
+    font-size: 19px;
+    color: #b40000;
+}
+
+.body-container form button {
+    background: #ab1c1c linear-gradient(to right, #881919, #be2b2b);
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0 solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 221px;
+    gap: 5px;
+}
+
+.body-container form button:active{
+    transform: scale(0.95);
+}
+
+.body-container form button:hover{
+    transform: scale(1.05);
+}
+
+.body-container form button#form_cancel {
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+}
+
+@media screen and (min-width: 1000px) {
+    .body-container form {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .body-container form button {
+        font-size: 19px;
+        height: 110px;
+        width: 250px;
+    }
+
+    .all_txt a {
+        font-size: 21px;
+    }
+
+    .all_txt .avertissement {
+        font-size: 23px;
+    }
+}

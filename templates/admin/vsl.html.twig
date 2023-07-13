@@ -1,0 +1,26 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_title %}
+    Demandes VSL
+{% endblock %}
+{% block page_content %}
+    <form action="{{ url('app_home') }}">
+        <button type="submit">Retour au site</button>
+    </form>
+    <h1>Demandes d'ajout de points VSL en attente :</h1>
+    {% for point in vsl %}
+        <p>Latitude : {{ point.latitude }}</p>
+        <p>Longitude : {{ point.longitude }}</p>
+        <p>Superficie : {{ point.superficie }}</p>
+        <p>Description : {{ point.description }}</p>
+        <form action="{{ path('admin_vsl_accept', {id: point.id}) }}">
+            <button type="submit" value="accept">Accepter</button>
+        </form>
+        <form action="{{ path('admin_vsl_refuse', {id: point.id}) }}">
+            <button type="submit" value="delete">Supprimer</button>
+        </form>
+        <hr>
+    {% endfor %}
+    {% if vsl|length == 0 %}
+        <p>Pas de demandes pour l'instant.</p>
+    {% endif %}
+{% endblock %}

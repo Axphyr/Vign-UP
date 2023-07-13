@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Fournisseurs & Prestataires{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/prestataireFournisseur.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="top_bar">
+
+        <form role="search" method="get" action="{{ path('app_page_fournisseurs') }}">
+            <div class="top-search">
+
+                <div class="search-container">
+
+                    <div class="search-bar">
+                        <div>
+                            <h1>Chercher un fournisseur/prestataire</h1>
+                        </div>
+                        <input class="prest-search" name="user_search" type="text" aria-label="Search" placeholder="Écrire ici" value="{{ search|default('') }}">
+                    </div>
+
+                    <div class="search-select">
+                        <select name="search_type">
+                            <option value="both">Les deux</option>
+                            <option value="fournisseurs">Fournisseurs</option>
+                            <option value="prestataires">Prestataires</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="search-button">
+                    <button id="sub" type="submit" >Chercher</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="prest-main">
+        {% if prestataires %}
+            {% set i = 0 %}
+            <h1>- Prestataires -</h1>
+            {% for prestataire in prestataires %}
+                {% set avatar = prestataireAvatars[i] %}
+                <div class="prest-profile">
+
+                    <div class="prest-top">
+                        <div class="prest-avatar">
+                            <img src="data:image/png;base64,{{ avatar }}">
+                        </div>
+                        <div class="prest-name">
+                            <h2>{{ prestataire.pseudo }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="prest-stats">
+                        <p><strong>Description</strong> : {{ prestataire.description }}</p>
+                        <p><strong>Adresse</strong> : {{ prestataire.address }}, {{ prestataire.cp }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if fournisseurs %}
+            {% set i = 0 %}
+            <h1>- Fournisseurs -</h1>
+            {% for fournisseur in fournisseurs %}
+                {% set avatar = fournisseurAvatars[i] %}
+                <div class="prest-profile">
+                        <div class="prest-top">
+                            <div class="prest-avatar">
+                                <img src="data:image/png;base64,{{ avatar }}">
+                            </div>
+                            <div class="prest-name">
+                                <h2>{{ fournisseur.pseudo }}</h2>
+                            </div>
+                        </div>
+                        <p><strong>Description</strong> : {{ fournisseur.description }}</p>
+                        <p><strong>Adresse</strong> : {{ fournisseur.address }}, {{ fournisseur.cp }}</p>
+                    </div>
+            {% endfor %}
+        {% endif %}
+        {% if not prestataires and not fournisseurs %}
+            <h2 class="prest-not-found">Aucun prestataire/fournisseur ne correspond à votre recherche.</h2>
+        {% endif %}
+    </div>
+{% endblock %}

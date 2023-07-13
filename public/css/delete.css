@@ -1,0 +1,114 @@
+
+body{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #258B23;
+}
+
+/*
+Text
+ */
+
+p{
+    font-size: 30px;
+    color: black;
+    margin: 40px;
+    font-family: "Candara Light", sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+strong{
+    color: darkred;
+}
+
+/*
+Boutons de formulaire
+ */
+
+.form__del{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border: black solid 2px;
+    background-color: lightgrey;
+    filter: brightness(90%);
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+    padding: 10px;
+}
+
+/*
+Bouton de confirmation
+ */
+
+#form_delete {
+    background-color: #eee;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 10em;
+    border-radius: 1rem;
+    color: lightcoral;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+    margin: 50px;
+}
+
+#form_delete:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+#form_delete:hover:not(:disabled) {
+    background: indianred;
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+}
+
+#form_delete:disabled {
+    cursor: auto;
+    color: grey;
+}
+
+/*
+Bouton d'annulation
+ */
+
+#form_cancel {
+    background-color: #eee;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 10em;
+    border-radius: 1rem;
+    color: deepskyblue;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+    margin: 50px;
+}
+
+#form_cancel:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+#form_cancel:hover:not(:disabled) {
+    background: deepskyblue;
+    color: white;
+    text-shadow: 0 0.1rem lightskyblue;
+}
+
+#form_cancel:disabled {
+    cursor: auto;
+    color: grey;
+}

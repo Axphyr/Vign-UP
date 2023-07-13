@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vign'UP{% endblock %}
+
+{% block body %}
+
+    <div class="actualite__header">
+        <div class="act__titre"> Dernières Actualités </div>
+    </div>
+
+    <div class="actualite__page__infos">
+        {% if page != 1 %}
+            <form method="get" action="{{ path('app_home') }}">
+                <label>
+                    <input type="number" name="page" value="{{ page-1 }}" class="actualite__page__before" hidden>
+                </label>
+                <div class="pages-navigator">
+                    <button type="submit"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+                </div>
+            </form>
+        {% endif %}
+
+        {# pour aider à la mise en forme des boutons de pages #}
+        {% if page == 1%}
+            <p></p>
+        {% endif %}
+
+        {% if not lastPage %}
+            <div class="actualite__page">Page {{ page }}</div>
+            <form method="get" action="{{ path('app_home') }}" class="actualite__page__next">
+                <label>
+                    <input type="number" name="page" value="{{ page+1 }}" hidden>
+                </label>
+                <button type="submit"><span class="material-symbols-outlined"><span class="material-symbols-outlined">arrow_forward_ios</span></span></button>
+            </form>
+        {% elseif lastPage %}
+            <div class="actualite__page">Dernière page</div>
+        {% endif %}
+
+        {% if lastPage %}
+            <p></p>
+        {% endif %}
+    </div>
+
+    {% for actualite in actuality %}
+    <div class="act__with__buttons">
+        <div class="actualite">
+            <div class="actualite__intitule"><strong>{{ actualite.intitule|capitalize }}</strong></div>
+            {% if actualite.id in images|keys %}
+                <div class="actualite__cover">
+                    <img alt="Image de couverture de l'actualité" src="data:image/png;base64,{{ images[actualite.id] }}"/>
+                </div>
+            {% endif %}
+            <div class="actualite__desc">{{ actualite.description }}</div>
+            <div class="actualite__date">{{ actualite.date|date("À G\\h\i\\, \\l\\e d/m/Y") }}</div>
+        </div>
+        {% if app.user %}
+            {% if "ROLE_ADMIN" in app.user.roles() %}
+                <div class="actualite__edition">
+                    <a class="actualite__delete" href="{{ path('app_actualite_delete', {'id': actualite.id}) }}"> Supprimer <span class="material-symbols-outlined">delete</span></a>
+                    <a class="actualite__update" href="{{ path('app_actualite_update', {'id': actualite.id}) }}"> Modifier<span class="material-symbols-outlined">update</span></a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
+
+    {% if app.user %}
+        {% if "ROLE_ADMIN" in app.user.roles() %}
+            <div class="create__button">
+                <div class="form__creer" onclick="location.href='{{ path('app_actualite_create') }}'">Créer une actualité</div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

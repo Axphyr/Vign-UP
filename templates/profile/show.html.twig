@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Profile de {{ user.lastname }} {{ user.firstname }}
+{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}" />{% endblock %}
+{% block body %}
+    <h1 class="nom-user"> {{ user.firstname }} {{ user.lastname }}</h1>
+    <ul class="info">
+        <img class="avatar-user" src="data:image/png;base64,{{ avatar }}">
+        <li class="pseudo-user"><strong>Pseudo</strong> : {{ user.pseudo }}</li>
+        <li class="mail-user"><strong>Email</strong> : {{ user.email }}</li>
+        <li class="description-user"><strong>Description</strong> : {{ user.description }}</li>
+        <li class="adresse"> <strong>Adresse professionelle</strong> :
+            <ul>
+                <li class="adresse-user"><strong>Adresse</strong> : {{ user.address }}</li>
+                <li class="CP-user"><strong>Code Postal</strong> : {{ user.cp }}</li>
+            </ul>
+        </li>
+        <li class="tel-user"><strong>Tél</strong> : {{ user.telUser }}</li>
+
+
+        {% if app.user and 'ROLE_ADMIN' in user.roles %}
+            <li class="role-admin-user"><strong>Rôle</strong> : Admin</li>
+        {% endif %}
+        {% if app.user and 'ROLE_VIGNERON' in user.roles %}
+            <li class="role-vigneron-user"><strong>Rôle</strong> : Vigneron</li>
+        {% endif %}
+        {% if app.user and 'ROLE_FOURNISSEUR' in user.roles %}
+            <li class="role-vigneron-user"><strong>Rôle</strong> : Fournisseur</li>
+        {% endif %}
+        {% if app.user and 'ROLE_PRESTATAIRE' in user.roles %}
+            <li class="role-prestataire-user"><strong>Rôle</strong> : Prestataire</li>
+        {% endif %}
+    </ul>
+
+    <div class="user-related-conv">
+    <div class="sujets-user">
+        <dl class="sujets-user-title">Vos sujets : </dl>
+        {% for sujet in user.sujets %}
+            <li>{{ sujet.titre }} <span class="date">{{ sujet.lastMessageDate|date("G\\:\i\\, \\l\\e d/m/Y") }}</span></li>
+            <br>
+        {% endfor %}
+    </div>
+    <div class="messages-user">
+        <dl class="messages-user-title">Vos messages : </dl>
+        {% for message in user.messages %}
+            <li>{{ message.contenu }} <span class="date">{{ message.dateMessage|date("G\\:\i\\, \\l\\e d/m/Y") }}</span></li>
+            <br>
+        {% endfor %}
+    </div>
+    </div>
+    {% if app.user.roles is defined and "ROLE_ADMIN" in app.user.roles %}
+        {% if questionnaires|length > 0 %}
+            <dl>Les réponses de cet utilisateur : </dl>
+            {{ include('_ReponseAndResult.html.twig') }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

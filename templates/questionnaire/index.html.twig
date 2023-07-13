@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos questionnaires{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/AllQuestionnaire.css') }}"> {% endblock %}
+
+{% block body %}
+    <h1>Voici nos questionnaires !</h1>
+    {% if app.user.roles is defined and "ROLE_ADMIN" in app.user.roles %}
+        <div class="admin_link">
+            <a href="{{ path('app_questionnaire_create') }}">Créer un questionnaire<span class="material-icons">add_circle</span></a>
+            <a href="{{ path('app_categorieQuestion') }}">Voir les catégories de question<span class="material-icons">search</span></a>
+            <a href="{{ path('app_categorieQuestion_create') }}">Créer une nouvelle catégorie de question<span class="material-icons">add_circle</span></a>
+        </div>
+    {% endif %}
+    <div class="all_questionnaires">
+        {% for questionnaire in questionnaires %}
+            <div class="questionnaire">
+                <a href="{{ path('app_questionnaire_id', {id: questionnaire.id}) }}" class="questionnaire_link">
+                    {% if questionnaire.id in images|keys %}
+                        <img alt="Image de présentation du questionnaire" src="data:image/png;base64,{{ images[questionnaire.id] }}"/>
+                    {% endif %}
+                    <h2 id="questionnaire_title">{{ questionnaire.Nom }}</h2>
+                    <p id="questionnaire_desc">{{ questionnaire.description }}</p>
+                </a>
+                {% if app.user.roles is defined %}
+                        <div class="user_resultats_questionnaire">
+                    {% if questionnaire.id in tabQuestionnaireResultat|keys %}
+                            {% for resultat in tabQuestionnaireResultat[questionnaire.id]|keys %}
+                                {% if resultat != "noteTotal" and resultat != "null" %}
+                                    <p id="categorie_resultat">{{ resultat }} :
+                                        {{ tabQuestionnaireResultat[questionnaire.id][resultat] }}/{{ tabQuestionnaireNote[questionnaire.id][resultat] }}
+                                    </p>
+                                {% endif %}
+                            {% endfor %}
+                            {% if tabQuestionnaireResultat[questionnaire.id]|length > 2 %}
+                                <p id="categorie_resultat">Or catégorie :
+                                    {{ tabQuestionnaireResultat[questionnaire.id]["null"] }}/{{ tabQuestionnaireNote[questionnaire.id]["null"] }}
+                                </p>
+                            {% endif %}
+                            <p id="categorie_resultat_total">Note total : {{ tabQuestionnaireResultat[questionnaire.id]["noteTotal"] }}/{{ tabQuestionnaireNote[questionnaire.id]["noteTotal"] }}</p>
+                        </div>
+                        <div class="questionnaire_resultat_link">
+                            <a id="more_details" href="{{ path('app_questionnaire_id_resultat', {id: questionnaire.id}) }}">Voir plus de détails.</a>
+                            <a id="associate_rep" href="{{ path('app_questionnaire_id', {id: questionnaire.id, previousReponses: true}) }}">Voir les réponses associées.</a>
+                        </div>
+                    {% else %}
+                            <p id="noResult">Vous n'avez pas encore répondu à ce questionnaire.</p>
+                        </div>
+                    {% endif %}
+                    {% if "ROLE_ADMIN" in app.user.roles %}
+                        <div class="admin_link">
+                            <a href="{{ path('app_questionnaire_update', {'id': questionnaire.id}) }}">Modifier<span class="material-icons">edit</span></a>
+                            <a href="{{ path('app_questionnaire_delete', {'id': questionnaire.id}) }}">Supprimer<span class="material-icons">delete</span></a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

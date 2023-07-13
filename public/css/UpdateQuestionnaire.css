@@ -1,0 +1,255 @@
+.body-container {
+    width: 100%;
+}
+
+.questionnaire_all_conseils p.txtAide {
+    padding: 10px;
+    color: #a9a9a9;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+.questionnaire_all_questions,.questionnaire_all_conseils {
+    margin-bottom: 70px;
+    padding: 20px;
+    border: white solid 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 15px;
+}
+
+.questionnaire_all_questions > .button_add,.questionnaire_all_conseils > .button_add {
+    align-self: center;
+}
+
+.question_reponses {
+    margin: 10px 30px 40px 20px;
+}
+
+.questionnaire_reponse {
+    border: white solid 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-top: 10px;
+    padding: 10px;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.button_remove_div,.questionnaire_all_conseils,.questionnaire_conseil,.questionnaire_conseils,.questionnaire_all_questions,.questionnaire_question,.questionnaire_questions,.question_reponses,.questionnaire_reponse {
+    display: flex;
+    flex-direction: column;
+}
+
+.button_remove_div {
+    align-items: center;
+}
+
+.questionnaire_question,.questionnaire_conseil {
+    margin-top: 41px;
+    gap: 19px;
+}
+
+.questionnaire_question > label, .questionnaire_conseil > label {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #3f3f3f;
+}
+
+.questionnaire_question > label:after, .questionnaire_conseil > label:after {
+    content:"";
+    display: block;
+    width: 190px;
+    height: 2px;
+    background: #27a9ad;
+    margin: 20px auto 0 auto;
+}
+
+.questionnaire_questions > label, .questionnaire_conseils > label {
+    text-align: center;
+    font-size: 23px;
+    margin-top: 7px;
+    font-weight: bold;
+}
+
+.question_reponses > label {
+    font-size: 15px;
+    color: #3f3f3f;
+}
+
+.questionnaire_reponse > label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.questionnaire_title h1 {
+    margin: 0;
+    color: white;
+}
+
+.questionnaire_title {
+    width: 100%;
+    background-color: #1f751e;
+    text-align: center;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+form[name="questionnaire"] {
+    display: flex;
+    flex-direction: column;
+    margin-left: 57px;
+    margin-right: 57px;
+    flex-grow: 1;
+    border: white solid 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.47), 0 1px 2px rgba(0, 0, 0, 0.82);
+    padding: 50px;
+}
+
+.questionnaire_options {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+    border: white solid 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 70px;
+}
+
+.questionnaire_options i {
+    font-size: 12px;
+    color: gray;
+}
+
+.questionnaire_options img {
+    width: 120px;
+    height: auto;
+    align-self: center;
+}
+
+.questionnaire_options div {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionnaire_options div#questionnaire_roleConnecte {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.body-container button {
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0px solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.body-container button:hover{
+    background: #55b562 linear-gradient(to right, #55b562, #5deb9b);
+}
+.body-container button:active{
+    transform: scale(0.95);
+}
+
+.body-container .button_add {
+    background: #23aec7 linear-gradient(to right, #23aec7, #27aaab);
+    width: 275px;
+}
+
+.body-container .button_add:hover {
+    background: #57b8cd linear-gradient(to right, #57b8cd, #59b4b5);
+}
+
+.body-container .button_remove {
+    background: #ed3a3a linear-gradient(to right, #ed3a3a, #a61717);
+    margin: 0 12px 12px 12px;
+    font-size: 12px;
+    width: 200px;
+}
+
+.body-container .button_remove:hover {
+    background: #ef6262 linear-gradient(to right, #ef6262, #9c5252);
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+.questionnaire_options input[type="number"] {
+    align-self: center;
+}
+
+div.helper {
+    padding: 10px;
+    color: #7e7e7e;
+    text-align: center;
+    font-style: italic;
+}
+
+@media screen and (max-width: 700px) {
+    form[name="questionnaire"] {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .button_remove,.button_add {
+        width: 125px;
+        height: 50px;
+        font-size: 12px;
+    }
+
+    .body-container button {
+        width: 150px;
+        margin: auto;
+    }
+
+    .button_remove span.material-icons,.button_add span.material-icons {
+        font-size: 17px;
+    }
+
+    h1 {
+        font-size: 21px;
+        padding: 39px;
+    }
+
+    .questionnaire_title {
+        padding: 0;
+    }
+
+    .questionnaire_all_questions, .questionnaire_all_conseils {
+        padding: 5px;
+    }
+
+    .questionnaire_options div#questionnaire_roleConnecte {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .questionnaire_options {
+        align-items: center;
+    }
+
+    .body-container input, .body-container textarea, .body-container select {
+        width: 100%;
+    }
+
+    div#questionnaire_roleConnecte input {
+        width: 20px;
+    }
+}

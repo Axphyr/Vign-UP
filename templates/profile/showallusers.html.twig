@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <style>
+        .user{
+            margin: 5px;
+        }
+    </style>
+    <ul>
+        {% for user in users %}
+            <li class="user"><a href="{{ path('app_profile_show', {id:user.id}) }}">
+                    <span class="lastname">{{ user.lastname }}</span>
+                    <span class="firstname">{{ user.firstname }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

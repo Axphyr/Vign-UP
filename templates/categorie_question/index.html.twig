@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des catégories de question{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/indexCategorieQuestion.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="categorie_question">
+        <a id="create" href="{{ path('app_categorieQuestion_create') }}">Créer une nouvelle catégorie de question<span class="material-icons">add_circle</span></a>
+        {% for categorieQuestion in categoriesQuestion %}
+            <div class="categorie">
+                <p id="nom">{{ categorieQuestion.Nom }}</p>
+                {% if categorieQuestion.description != null %}
+                    <p id="description">{{ categorieQuestion.description }}</p>
+                {% else %}
+                    <p id="description">pas de description</p>
+                {% endif %}
+                <div class="link">
+                    <a href="{{ path('app_categorieQuestion_id', {id: categorieQuestion.id}) }}">
+                        Voir plus de détails<span class="material-icons">visibility</span>
+                    </a>
+                    <a href="{{ path('app_categorieQuestion_delete', {id: categorieQuestion.id}) }}">
+                        Suprimer<span class="material-icons">delete</span>
+                    </a>
+                    <a href="{{ path('app_categorieQuestion_update', {id: categorieQuestion.id}) }}">
+                        Modifier<span class="material-icons">edit</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

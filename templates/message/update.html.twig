@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/update.css') }}" />
+{% endblock %}
+
+{% block title %}Édition d'un message{% endblock %}
+
+{% block body %}
+
+    <div class="form__update">
+        {% if app.user and "ROLE_ADMIN" in app.user.roles() %}
+            <p> Modification du message de l'utilisateur <strong>{{ message.user.pseudo }}</strong></p>
+        {% else %}
+            <p> Modification du message</p>
+        {% endif %}
+
+        <form name="message" method="post">
+            {{ form_widget(form) }}
+            <button id="form_update" type="submit" class="btn btn-primary">Valider la modification</button>
+        </form>
+    </div>
+
+{% endblock %}

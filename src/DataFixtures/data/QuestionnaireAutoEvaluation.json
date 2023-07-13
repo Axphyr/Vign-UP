@@ -1,0 +1,403 @@
+[
+  {
+    "Questionnaire": {
+      "Nom": "Questionnaire d'auto diagnostic",
+      "Description": "Ce questionnaire vous permettra de savoir si vous pouvez vous convertir aux VSL !",
+      "partieConnecte": 5,
+      "roleConnecte": [
+        "ROLE_PRESTATAIRE",
+        "ROLE_VIGNERON",
+        "ROLE_FOURNISSEUR"
+      ]
+    },
+    "Questions": {
+      "1": {
+        "txtQuestion": "Quelle est la surface de la parcelle ?",
+        "categorieQuestion": 1,
+        "numero": 1
+      },
+      "2": {
+        "txtQuestion": "La parcelle présente-t-elle un dévers, des pentes fortes ou une configuration difficile d’accès ?",
+        "categorieQuestion": null,
+        "numero": 2
+      },
+      "3": {
+        "txtQuestion": "Pouvez-vous absorber une perte de rendement de 15 à 20% sur cette parcelle (par rapport à son plein potentiel en plantation étroite) ?",
+        "categorieQuestion": null,
+        "numero": 3
+      },
+      "4": {
+        "txtQuestion": "Les différentes parties prenantes (exploitants, propriétaires, salariés) sont-t-ils favorables à l’implantation de vignes semi-larges ?",
+        "categorieQuestion": null,
+        "numero": 4
+      },
+      "5": {
+        "txtQuestion": "Quelle le niveau de dévers sur la parcelle (dans le sens de plantation) ?",
+        "categorieQuestion": 1,
+        "numero": 5
+      },
+      "6": {
+        "txtQuestion": "Quelle est la dimension des tournières?",
+        "categorieQuestion": 1,
+        "numero": 6
+      },
+      "7": {
+        "txtQuestion": "La parcelle est-elle enclavée ?",
+        "categorieQuestion": 1,
+        "numero": 7
+      },
+      "8": {
+        "txtQuestion": "Quel est l’âge de la parcelle ?",
+        "categorieQuestion": 2,
+        "numero": 8
+      },
+      "9": {
+        "txtQuestion": "Quelle est le rendement moyen de vos parcelles sur les 10 dernières années ?",
+        "categorieQuestion": 2,
+        "numero": 9
+      },
+      "10": {
+        "txtQuestion": "Ceci est-il lié à une situation sanitaire particulière ? (Court-noué, maladies du bois, enroulement, etc.)",
+        "categorieQuestion": 2,
+        "numero": 10
+      },
+      "11": {
+        "txtQuestion": "Quel est votre objectif de rendement sur la parcelle ?",
+        "categorieQuestion": 2,
+        "numero": 11
+      },
+      "12": {
+        "txtQuestion": "Quel est votre morcèlement du parcellaire ?",
+        "categorieQuestion": 3,
+        "numero": 12
+      },
+      "13": {
+        "txtQuestion": "Dans les 5 ans, quelle surface souhaiteriez-vous convertir en VSL ?",
+        "categorieQuestion": 3,
+        "numero": 13
+      },
+      "14": {
+        "txtQuestion": "La structure exploitante est-elle propriétaire des vignes à convertir ?",
+        "categorieQuestion": 3,
+        "numero": 14
+      },
+      "15": {
+        "txtQuestion": "Quelle est l'avis de l’exploitant sur la conversion en VSL ?",
+        "categorieQuestion": 4,
+        "numero": 15
+      },
+      "16": {
+        "txtQuestion": "Quelle est l'avis des associés et salariés sur la conversion en VSL ?",
+        "categorieQuestion": 4,
+        "numero": 16
+      },
+      "17": {
+        "txtQuestion": "Quelle est l'avis du propriétaire sur la conversion en VSL ?",
+        "categorieQuestion": 4,
+        "numero": 17
+      }
+    },
+    "Reponses": {
+      "1": {
+        "numero": 1,
+        "txtReponse": "Inférieure à 20 ares ?",
+        "nombrePoints": 1
+      },
+      "2": {
+        "numero": 1,
+        "txtReponse": "Supérieure à 20 ares ?",
+        "nombrePoints": 2
+      },
+      "3": {
+        "numero": 2,
+        "txtReponse": "Plutôt oui",
+        "nombrePoints": 1
+      },
+      "4": {
+        "numero": 2,
+        "txtReponse": "Plutôt non",
+        "nombrePoints": 2
+      },
+      "5": {
+        "numero": 3,
+        "txtReponse": "non",
+        "nombrePoints": 1
+      },
+      "6": {
+        "numero": 3,
+        "txtReponse": "oui",
+        "nombrePoints": 2
+      },
+      "7": {
+        "numero": 4,
+        "txtReponse": "Plutôt défavorables",
+        "nombrePoints": 1
+      },
+      "8": {
+        "numero": 4,
+        "txtReponse": "Plutôt favorables",
+        "nombrePoints": 2
+      },
+      "9": {
+        "numero": 5,
+        "txtReponse": "<5%",
+        "nombrePoints": 3
+      },
+      "10": {
+        "numero": 5,
+        "txtReponse": "Entre 5 et 9%",
+        "nombrePoints": 2
+      },
+      "11": {
+        "numero": 5,
+        "txtReponse": "10% ou plus",
+        "nombrePoints": 1
+      },
+      "12": {
+        "numero": 6,
+        "txtReponse": "Moins de 5 mètres",
+        "nombrePoints": 1
+      },
+      "13": {
+        "numero": 6,
+        "txtReponse": "Entre 5 et 7 mètres",
+        "nombrePoints": 2
+      },
+      "14": {
+        "numero": 6,
+        "txtReponse": "Plus de 7 mètres",
+        "nombrePoints": 3
+      },
+      "15": {
+        "numero": 7,
+        "txtReponse": "Oui la parcelle est entourée par 4 autres parcelles sans chemin les séparant",
+        "nombrePoints": 1
+      },
+      "16": {
+        "numero": 7,
+        "txtReponse": "Non la parcelle est accessible via une route ou un chemin",
+        "nombrePoints": 2
+      },
+      "17": {
+        "numero": 8,
+        "txtReponse": "Moins de 10 ans",
+        "nombrePoints": 1
+      },
+      "18": {
+        "numero": 8,
+        "txtReponse": "Entre 10 et 30 ans",
+        "nombrePoints": 2
+      },
+      "19": {
+        "numero": 8,
+        "txtReponse": "+ de 30 ans",
+        "nombrePoints": 3
+      },
+      "20": {
+        "numero": 9,
+        "txtReponse": "Valeur < 9000",
+        "nombrePoints": 0
+      },
+      "21": {
+        "numero": 9,
+        "txtReponse": "Valeur >= 9000",
+        "nombrePoints": 0
+      },
+      "22": {
+        "numero": 10,
+        "txtReponse": "Non",
+        "nombrePoints": 0
+      },
+      "23": {
+        "numero": 10,
+        "txtReponse": "Maladies du bois",
+        "nombrePoints": 1
+      },
+      "24": {
+        "numero": 10,
+        "txtReponse": "Court-noué",
+        "nombrePoints": 1
+      },
+      "25": {
+        "numero": 10,
+        "txtReponse": "Autres dépérissements",
+        "nombrePoints": 1
+      },
+      "26": {
+        "numero": 11,
+        "txtReponse": "< 80%",
+        "nombrePoints": 1
+      },
+      "27": {
+        "numero": 11,
+        "txtReponse": "Entre 80 et 100%",
+        "nombrePoints": 2
+      },
+      "28": {
+        "numero": 11,
+        "txtReponse": ">= 100%",
+        "nombrePoints": 3
+      },
+      "29": {
+        "numero": 12,
+        "txtReponse": "1/3 des parcelles ont une surface supérieure à 20 ares",
+        "nombrePoints": 1
+      },
+      "30": {
+        "numero": 12,
+        "txtReponse": "Entre 1 et 2/3 des parcelles ont une surface supérieure à 20 ares",
+        "nombrePoints": 2
+      },
+      "31": {
+        "numero": 12,
+        "txtReponse": "Plus de 2/3 des parcelles ont une surface supérieure à 20 ares",
+        "nombrePoints": 3
+      },
+      "32": {
+        "numero": 13,
+        "txtReponse": "- De 2 hectares",
+        "nombrePoints": 0
+      },
+      "33": {
+        "numero": 13,
+        "txtReponse": "+ De 2 hectares",
+        "nombrePoints": 0
+      },
+      "34": {
+        "numero": 14,
+        "txtReponse": "Oui",
+        "nombrePoints": 2
+      },
+      "35": {
+        "numero": 14,
+        "txtReponse": "Non",
+        "nombrePoints": 1
+      },
+      "36": {
+        "numero": 15,
+        "txtReponse": "Défavorable",
+        "nombrePoints": 1
+      },
+      "37": {
+        "numero": 15,
+        "txtReponse": "Indifférent",
+        "nombrePoints": 2
+      },
+      "38": {
+        "numero": 15,
+        "txtReponse": "Favorable",
+        "nombrePoints": 3
+      },
+      "39": {
+        "numero": 16,
+        "txtReponse": "Défavorable",
+        "nombrePoints": 1
+      },
+      "40": {
+        "numero": 16,
+        "txtReponse": "Indifférent",
+        "nombrePoints": 2
+      },
+      "41": {
+        "numero": 16,
+        "txtReponse": "Favorable",
+        "nombrePoints": 3
+      },
+      "42": {
+        "numero": 17,
+        "txtReponse": "Défavorable",
+        "nombrePoints": 1
+      },
+      "43": {
+        "numero": 17,
+        "txtReponse": "Indifférent",
+        "nombrePoints": 2
+      },
+      "44": {
+        "numero": 17,
+        "txtReponse": "Favorable",
+        "nombrePoints": 3
+      }
+    },
+    "Conseils": {
+      "1": {
+        "txtConseil": "Les informations renseignées sur cette parcelle semblent décrire une situation plutôt défavorable à l’implantation d’une vigne semi-large. Vous pouvez avancer vers  le niveau 2 de l’auto-diagnostic pour  une analyse plus fine de votre situation.",
+        "noteMinimale": 4,
+        "categorieQuestion": null,
+        "partieConnecte": false
+      },
+      "2": {
+        "txtConseil": "Les informations renseignées sur cette parcelle semblent décrire une situation plutôt favorable à l’implantation d’une vigne semi-large moyennant quelques aménagements. Vous pouvez-avancer vers  le niveau 2 de l’auto-diagnostic pour  une analyse plus fine de votre situation.",
+        "noteMinimale": 6,
+        "categorieQuestion": null,
+        "partieConnecte": false
+      },
+      "3": {
+        "txtConseil": "Les informations renseignées sur cette parcelle semblent décrire une situation favorable à l’implantation d’une vigne semi-large. Vous pouvez-avancer vers  le niveau 2 de l’auto-diagnostic pour connaitre les possibilités d’optimisation du système.",
+        "noteMinimale": 7,
+        "categorieQuestion": null,
+        "partieConnecte": false
+      },
+      "4": {
+        "txtConseil": "La taille de la parcelle rend délicate l’implantation de vignes semi-larges, Attention, le niveau de dévers indiqué proscrit l’utilisation de matériel tracté, Attention, la dimension des tournières proscrit l’utilisation de matériel tracté, L’enclavement de la parcelle rend impossible l’utilisation d’un tracteur vigneron.",
+        "noteMinimale": 4,
+        "categorieQuestion": 1,
+        "partieConnecte": true
+      },
+      "5": {
+        "txtConseil": "La taille de la parcelle est favorable à l’implantation de vignes semi-larges, le niveau de dévers indiqué n’est pas contraignant pour l’utilisation du matériel tracté, la dimension des tournières est idéale pour tous les travaux en tracteur interligne, l’accessibilité de la parcelle rend possible l’utilisation du tracteur vigneron.",
+        "noteMinimale": 10,
+        "categorieQuestion": 1,
+        "partieConnecte": true
+      },
+      "6": {
+        "txtConseil": "Se reporter à la documentation des questionnaires ou demander à un administrateur l'analyse de vos résultats",
+        "noteMinimale": 5,
+        "categorieQuestion": 1,
+        "partieConnecte": true
+      },
+      "7": {
+        "txtConseil": "La structure de votre exploitation semble défavorable à un projet de transition vers les VSL. En cas de conversion, si vous souhaiteriez convertir - de 2 hectares en VSL alors il est préférable de privilégier le partage de matériel : copropriété, Cuma, prestation, entraide. Sinon un investissement individuel dans du matériel adapté est envisageable.",
+        "noteMinimale": 2,
+        "categorieQuestion": 3,
+        "partieConnecte": true
+      },
+      "8": {
+        "txtConseil": "La structure de votre exploitation permet d’envisager une  transition vers les VSL. Pour entretenir les surfaces converties, si vous souhaiteriez convertir - de 2 hectares en VSL alors il est préférable de privilégier le partage de matériel : copropriété, Cuma, prestation, entraide. Sinon un investissement individuel dans du matériel adapté est envisageable.",
+        "noteMinimale": 4,
+        "categorieQuestion": 3,
+        "partieConnecte": true
+      },
+      "9": {
+        "txtConseil": "Le contexte humain semble défavorable au projet de transition vers les VSL et une concertation entre les différentes parties semble nécessaire.",
+        "noteMinimale": 3,
+        "categorieQuestion": 4,
+        "partieConnecte": true
+      },
+      "10": {
+        "txtConseil": "Le contexte humain vous permet d’envisager une  transition vers les VSL. Une concertation entre les différentes parties permettrait de sécuriser le projet.",
+        "noteMinimale": 6,
+        "categorieQuestion": 4,
+        "partieConnecte": true
+      },
+      "11": {
+        "txtConseil": "Le contexte humain est favorable au projet de transition vers les VSL.",
+        "noteMinimale": 8,
+        "categorieQuestion": 4,
+        "partieConnecte": true
+      },
+      "12": {
+        "txtConseil": "Votre objectif est < à 80% du rendement des 10 dernières années, signe d’un problème sur votre parcelle, avant de passer en VSL, contacter un conseiller pour établir un diagnostic plus précis. A terroir et matériel végétal équivalent, une vigne semi-large produit généralement un rendement inférieur de 15 à 20% par rapport à une vigne étroite traditionnelle. Il est important de prendre en compte cette composante dans votre projet. Si vous n'avez pas répondu NON à la question numéro 10 alors vos rendements actuels sont amputés par des dépérissements sévères (court-noué, maladies du bois, pieds manquants, etc.), il est tout à fait possible qu’une vigne semi-large nouvellement implantée soit plus productive.",
+        "noteMinimale": 2,
+        "categorieQuestion": 2,
+        "partieConnecte": true
+      },
+      "13": {
+        "txtConseil": "Se reporter à la documentation des questionnaires ou demander à un administrateur l'analyse de vos résultats. Cependant voici quelques indications : -Si votre objectif est compris entre 80% et 100% du rendement des 10 dernières années. Une attention devra être portée sur les leviers à mettre en œuvre (choix du matériel végétal, taille, fertilisation...) pour atteindre vos objectifs. A terroir et matériel végétal équivalent, une vigne semi-large produit généralement un rendement inférieur de 15 à 20% par rapport à une vigne étroite traditionnelle. Il est important de prendre en compte cette composante dans votre projet. -Sinon si Votre objectif supérieur à 100% du rendement des 10 dernières années. Le passage en VSL ne semble pas poser de problème particulier. A terroir et matériel végétal équivalent, une vigne semi-large produit généralement un rendement inférieur de 15 à 20% par rapport à une vigne étroite traditionnelle. Il est important de prendre en compte cette composante dans votre projet. | Dans tous les cas si vous n'avez pas répondu NON à la question numéro 10 alors vos rendements actuels sont amputés par des dépérissements sévères (court-noué, maladies du bois, pieds manquants, etc.), il est tout à fait possible qu’une vigne semi-large nouvellement implantée soit plus productive.",
+        "noteMinimale": 3,
+        "categorieQuestion": 2,
+        "partieConnecte": true
+      }
+    }
+  }
+]

@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte des VSL{% endblock %}
+
+
+{% block head %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+        <!--Modifier la taille de la carte avec les valeurs suivantes-->
+        <style>
+            h1 {
+                text-align: center;
+                font-variant: small-caps;
+            }
+            #map {
+                height: 450px;
+                width: 80%;
+                margin: auto;
+            }
+
+            .formulaire {
+                width: 40%;
+                margin: auto;
+            }
+
+            .bouton {
+                background-color: #258B23;
+                padding: 14px 15px;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                border: 2px dashed #258B23;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                transition: .4s;
+                position: relative;
+                margin:0 auto;
+
+                display:block;
+            }
+
+            .bouton span:last-child {
+                display: none;
+            }
+
+            .bouton:hover {
+                transition: .4s;
+                border: 2px dashed #00BFA6;
+                background-color: #fff;
+                color: #00BFA6;
+            }
+
+            .bouton:active {
+                background-color: #87dbd0;
+            }
+
+            .bouton-center {
+                width: 100%;
+                margin-top: 5%;
+                margin-bottom: 5%;
+            }
+
+            .formulaire input{
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid green;
+                margin-bottom: 5px;
+                height: 26px;
+            }
+            .button__VSL{
+                border-bottom: whitesmoke solid 1px;
+            }
+            @media screen and (max-width: 768px) {
+                #map {
+                    height: 300px;
+                    width: 95%;
+                }
+
+                .formulaire {
+                    width: 95%;
+                    margin: auto;
+                }
+            }
+
+
+        </style>
+
+    {% endblock %}
+{% endblock %}
+{% block body %}
+    <h1>la carte des vsl</h1>
+    <div id="map">
+    </div>
+    {% if app.user %}
+        {% if submitted == 0 %}
+            {% if "ROLE_ADMIN" in app.user.roles() or "ROLE_VIGNERON" in app.user.roles() %}
+                <div class="formulaire">
+                    <h2>Ajouter une parcelle de Vignes semi-larges</h2>
+                    <p>Une fois votre parcelle ajoutée, votre demande sera analysée par l'administrateur avant d'apparaître sur la carte.</p>
+                    <h3>Coordonnées GPS</h3>
+                    {{ form_start(form) }}
+                    <div class="input-vsl">
+                        {{ form_row(form.latitude, {'label': 'Latitude '}) }}
+                        {{ form_row(form.longitude, {'label': 'Longitude '}) }}
+                    </div>
+                    <h3>Autres informations</h3>
+                    <div class="input-vsl">
+                        {{ form_row(form.superficie, {'label': 'Superficie en km2 '}) }}
+                        {{ form_row(form.description, {'label': 'Brève description de la parcelle '}) }}
+                    </div>
+                    <div class="bouton-center">
+                        <button id="vsl_sub" type="submit" class="bouton">Ajouter</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="formulaire">
+                <h3>Votre demande a bien été enregistrée.</h3>
+                <p>Votre parcelle apparaîtra sur la carte une fois approuvée par l'administrateur.</p>
+                <form action="{{ path('app_vsl') }}">
+                    <button type="submit" class="bouton">Ajouter un autre point</button>
+                </form>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="formulaire">
+            <p>Vous êtes vigneron et vous avez une parcelle de vignes semi-larges à ajouter à la carte?</p>
+            <p>Connectez vous :</p>
+            <a href="{{ path('app_login') }}"><button class="bouton">Se connecter</button></a>
+        </div>
+    {% endif %}
+    {% set array =  [] %}
+    {% for vsl in vslList %}
+        {% set array = array | merge([{latitude: vsl.latitude, longitude: vsl.longitude, description: vsl.description}]) %}
+    {% endfor %}
+    <input type="hidden" id="array" value="{{ array|json_encode }}">
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script>
+        //Initialisation de la carte et chargement des tiles
+        var map = L.map('map').setView([49.258329, 4.031696], 10);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var icone = L.icon({
+            iconUrl: "img/logo_map.png",
+            iconSize: [50, 50],
+            iconAnchor: [25, 50],
+            popupAnchor: [0, -50]
+        })
+
+        //Récupération des points de la BD
+        var array = document.getElementById('array').value;
+        var vslPoints = JSON.parse(array);
+
+        //Affichage
+        for(point in vslPoints) {
+            L.marker([vslPoints[point].latitude, vslPoints[point].longitude], {icon: icone}).addTo(map)
+                .bindPopup(vslPoints[point].description)
+                .openPopup();
+        }
+        L.marker([49.258329, 4.031696], {icon: icone}).addTo(map)
+            .bindPopup('REIMS')
+            .openPopup();
+
+    </script>
+{% endblock %}

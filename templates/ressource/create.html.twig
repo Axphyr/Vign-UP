@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/create.css') }}" />
+{% endblock %}
+
+{% block title %}Création d'une ressource{% endblock %}
+
+{% block body %}
+    <div class="form__create">
+        <p>Création d'une ressource</p>
+
+        <form name="ressource" method="post">
+            {{ form_widget(form) }}
+            <button id="form_update" type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
+{% endblock %}

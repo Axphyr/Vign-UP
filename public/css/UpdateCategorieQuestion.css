@@ -1,0 +1,88 @@
+.body-container {
+    width: 100%;
+}
+
+.body-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+div.update_categorie_question a {
+    text-decoration: none;
+    color: #0060da;
+}
+
+div.update_categorie_question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 35px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.update_categorie_question h1 {
+    padding: 15px;
+    font-size: 25px;
+}
+
+.body-container form button[type="submit"] {
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0px solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 75px;
+}
+
+.body-container form button[type="submit"]:hover{
+    background: #55b562 linear-gradient(to right, #55b562, #5deb9b);
+}
+.body-container form button[type="submit"]:active{
+    transform: scale(0.95);
+}
+
+div.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-container form input {
+    width: 250px;
+}
+
+.body-container form textarea {
+    width: 250px;
+    height: 150px;
+}
+
+@media screen and (min-width: 1000px) {
+    div.update_categorie_question a {
+        font-size: 25px;
+    }
+
+    .body-container form input {
+        width: 500px;
+    }
+
+    .body-container form textarea {
+        width: 500px;
+        height: 200px;
+    }
+
+    .body-container form button[type="submit"] {
+        width: 300px;
+    }
+}

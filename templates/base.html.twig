@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial scale=1">
+        <title>{% block title %}VignUp{% endblock %}</title>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Great Vibes' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="icon" type="image/png" href="img/vignup.png">
+        <link href="{{ asset('css/style.css') }}"  rel="stylesheet"/>
+        {% block stylesheets %}
+            
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <style>
+            * {
+                font-family: 'Montserrat';
+            }
+        </style>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+    </head>
+    <body>
+
+    <div class="background">
+            <div class="background-text"><a href="{{ path('app_home') }}">Vign'Up</a></div>
+    </div>
+
+        <header class="accueil_titre">
+            <a class="retour-home-logo" href="{{ url('app_home') }}">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </a>
+                <nav>
+                <ul class="accueil__menu">
+                        <li class="button__user" onclick="location.href='{{ path('app_profile') }}'">
+                            <a href="{{ path('app_profile') }}" >Profile</a>
+                        </li>
+                        <li class="button__forum" onclick="location.href='{{ path('app_forum') }}'">
+                            <a href="{{ path('app_forum') }}" >Forum</a>
+                        </li>
+                        <li class="button__prestataire" onclick="location.href='{{ path('app_page_fournisseurs') }}'">
+                            <a href="{{ path('app_page_fournisseurs') }}" >Fournisseurs & Prestataires</a>
+                        </li>
+                        <li class="button__questionnaire" onclick="location.href='{{ path('app_questionnaire') }}'">
+                            <a href="{{ path('app_questionnaire') }}" >Questionnaire</a>
+                        </li>
+                        <li class="button__ressource" onclick="location.href='{{ path('app_ressource') }}'">
+                            <a href="{{ path('app_ressource') }}" >Ressources</a>
+                        </li>
+                        <li class="button__VSL" onclick="location.href='{{ path('app_vsl') }}'">
+                            <a href="{{ path('app_vsl') }}" >Carte des VSL</a>
+                        </li>
+                        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                            <div class="button__admin" onclick="location.href='{{ path('admin') }}'">
+                                <a href="{{ path('admin') }}" >Espace Administrateur</a>
+                            </div>
+                        {% endif %}
+                            <form class="search_bar" role="search" method="get" action="{{ path('app_profile_users_search') }}">
+                                <input name="search" type="text" aria-label="Search" placeholder="Chercher un utilisateur" value="{{ search|default('') }}">
+                                <button id="sub" type="submit" >Chercher</button>
+                            </form>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+                        <div class="button__logout" onclick="location.href='{{ path('app_logout') }}'">
+                            <a href="{{ path('app_logout') }}">Déconnexion</a>
+                        </div>
+                    {% endif %}
+                    {% if not app.user %}
+                        <div class="button__login" onclick="location.href='{{ path('app_login') }}'">
+                            <a href="{{ path('app_login') }}">Connexion</a>
+                        </div>
+                    {% endif %}
+                </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+        </header>
+        <script src="{{ asset('js/burgermenu.js') }}"></script>
+        <div class="body-container">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Vign'Up</div>
+            <div class="footer-lists">
+                <div class="footer-list">
+                    <h4 class="footer-title">Mon Compte</h4>
+                    <ul>
+                        <li><a href="{{ path('app_profile') }}">Accéder à mon compte</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="footer-list">
+                    <h4 class="footer-title">Les Ressources</h4>
+                    <ul>
+                        <li><a href="{{ path('app_ressource') }}">Accéder aux ressources</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="footer-list">
+                    <h4 class="footer-title">À propos</h4>
+                    <ul>
+                        <li>Nous contacter</li>
+                        <li>Qui sommes-nous?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <p>Copyright &copy; 2022 - Vign'Up tous droits réservés.</p>
+        </div>
+    </footer>
+</html>

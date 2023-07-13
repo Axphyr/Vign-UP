@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %} Un sujet {% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/forumstyle.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="topic_page_top">
+        <h1>Sujet : {{ topic.titre }}</h1>
+        <a class="topic_button" href="{{ path('app_forum') }}">Retour à la liste des sujets</a>
+        {% if app.user %}
+            {% if app.user.id == topic.user.id or "ROLE_ADMIN" in app.user.roles() %}
+                <a class="topic_button_supp" href="{{ path('app_topic_delete', {'id': topic.id}) }}">Suppression du sujet</a>
+            {% endif %}
+        {% endif %}
+    </div>
+<div class="topic_page_container">
+
+        {% for msg in messages %}
+            {% set user = msg.user %}
+
+            <div class="message-box">
+                <div class="message-box-with-profile-picture">
+                    {% if msg.id in images|keys %}
+                        <div class="user__profile" onclick="location.href='{% if app.user and app.user.id != msg.user.id %}/profile/{{ msg.user.id }}{% else %}/profile{% endif %}'">
+                            <img alt="Image de profile" src="data:image/png;base64,{{ images[msg.id] }}"/>
+                        </div>
+                    {% endif %}
+                    <div class="message-infos">
+                        <div class="message__suppl">
+                            <h2 class="message__name">{{ user.pseudo|capitalize }}</h2>
+                            <p class="message__date">{{ msg.dateMessage|date("À G\\h\i\\, \\l\\e d/m/Y") }}</p>
+                            {% if app.user %}
+                                {% if app.user.id == user.id or "ROLE_ADMIN" in app.user.roles() %}
+                                    <a class="message__suppr" href="{{ path('app_message_delete', {'id': msg.id}) }}"><span class="material-icons mess__delete">delete</span></a>
+                                    <a class="message__modif" href="{{ path('app_message_update', {'id': msg.id}) }}"><span class="material-icons mess__edit">edit</span></a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="message_content">{{ msg.contenu }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    <div class="new_message_form" id="new">
+        <h1>Nouveau message</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.contenu, {'label': 'Contenu', 'placeholder': 'Saisir le texte du message'}) }}
+        <button id="mess_sub" type="submit" class="btn btn-primary">Publier</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ressources.css') }}" />
+{% endblock %}
+
+{% block title %}Vign'UP{% endblock %}
+
+{% block body %}
+
+    <div class="ressource__header">
+        <div class="ress__titre"> Ressources </div>
+    </div>
+
+    <div class="list__ressources">
+    {% for res in ressources %}
+        <div class="ress__with__buttons">
+            <div class="ressources" onclick="location.href='{{ res.url }}'">
+                <div class="ressources__nom"><strong>{{ res.nomRessource|capitalize }}</strong></div>
+                <div class="ressources__desc">{{ res.descriptif }}</div>
+            </div>
+
+        {% if app.user %}
+            {% if "ROLE_ADMIN" in app.user.roles() %}
+                <div class="ress__buttons">
+                    <a class="ressource__delete" href="{{ path('app_ressource_delete', {'id': res.id}) }}"><span class="material-icons ress__delete">delete</span></a>
+                    <a class="ressource__update" href="{{ path('app_ressource_update', {'id': res.id}) }}"><span class="material-icons ress__edit">edit</span></a>
+                </div>
+            {% endif %}
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+    {% if app.user %}
+        {% if "ROLE_ADMIN" in app.user.roles() %}
+            <div class="create__button">
+                <div class="form__creer" onclick="location.href='{{ path('app_ressource_create') }}'">Créer une ressource</div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

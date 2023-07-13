@@ -1,0 +1,285 @@
+.body-container {
+    width: 100%;
+}
+
+/** CSS attributes */
+
+.questionnaire_reponse label {
+    max-width: 88%;
+}
+
+h1 {
+    font-size: 21px;
+    text-align: center;
+    background-color: #1f751e;
+    padding: 39px;
+    color: white;
+    margin-top: 0;
+}
+
+.questionnaire_question,.body-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-container form {
+    text-align: center;
+    gap: 75px;
+    margin: 41px 10px 50px 10px;
+}
+
+.body-container button[type="submit"] {
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0 solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 221px;
+    gap: 5px;
+}
+
+.body-container button[type="submit"]:hover{
+    background: #55b562 linear-gradient(to right, #55b562, #5deb9b);
+}
+.body-container button[type="submit"]:active{
+    transform: scale(0.95);
+}
+
+.questionnaire_reponse {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    text-align: left;
+}
+
+.questionnaire_reponses_question {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+a.login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+a.login:hover {
+    color: blue;
+}
+
+.connect p {
+    font-size: 16px;
+    color: gray;
+    font-style: italic;
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.question_txt {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7px;
+    color: #2a2a2a;
+}
+
+.question_txt h2, .question_txt h3 {
+    margin: 0 0 10px 0;
+}
+
+.question_txt h3 {
+    color: #3b3b3b;
+}
+
+input[type="radio"] {
+    appearance: none;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    position: relative;
+}
+
+input[type="radio"]:checked {
+    border: 7px solid rgb(0, 187, 255);
+}
+
+.question_nextAndPast {
+    display: none;
+}
+
+button#submit2 {
+    display: none;
+}
+
+/** affichage pleine écran */
+
+@media screen and (min-width: 700px) {
+    .questionnaire_reponses_question {
+        flex-grow: 1;
+        justify-content: center;
+        border: #27a8ac 1px solid;
+        border-radius: 25px;
+        margin-bottom: 12px;
+        margin-left: 53px;
+        margin-right: 53px;
+        padding: 19px;
+    }
+    .button__questionnaire{
+        border-bottom: whitesmoke solid 1px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 800px) {
+    h1 {
+        font-size: 48px;
+        padding: 75px;
+    }
+
+    .question_txt {
+        font-size: 80px;
+    }
+
+    .question_txt h2 {
+        margin-top: 59px;
+        font-size: 66px;
+    }
+
+    .question_txt h3 {
+        font-size: 36px;
+    }
+
+    .question_txt h3:after {
+        content:"";
+        display: block;
+        width: 250px;
+        height: 2px;
+        background: #27a9ad;
+        margin: 10px auto 0 auto;
+        transition: background-color .5s ease-in-out, width .3s ease-in-out;
+    }
+
+    .question_txt h3:hover:after {
+        width: 320px;
+        background-color: #2bc3c7;
+    }
+
+    .questionnaire_question {
+        height: 920px;
+        justify-content: center;
+        width: 80%;
+    }
+
+    .question_nextAndPast {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .questionnaire_reponses_question {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: initial;
+        border: #B9B9B9FF 1px solid;
+        border-radius: 25px;
+        margin-bottom: 12px;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .questionnaire_reponse {
+        justify-content: center;
+    }
+
+    .questionnaire_reponse input[type="radio"] {
+        width: 25px;
+        height: 25px;
+    }
+
+    .questionnaire_reponse label {
+        font-size: 15px;
+        color: #505050;
+    }
+
+    .question_nextAndPast a#next,.question_nextAndPast a#past {
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        font-style: normal;
+        padding: 14px 15px;
+        border: 0 solid #000;
+        border-radius: 10px;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        height: 41px;
+        width: 180px;
+    }
+
+    a#next:hover,a#past:hover {
+        transform: scale(1.1);
+    }
+
+    a#next {
+        background: #1c6fab linear-gradient(to right, #165680, #1b6496);
+    }
+
+    a#past {
+        background: #1cabab linear-gradient(to right, #189393, #1fb6b6);
+    }
+
+    .body-container form {
+        align-items: center;
+    }
+
+    button#submit2 {
+        display: flex;
+    }
+
+    button#submit1 {
+        display: none;
+    }
+
+    .connect p {
+        font-size: 19px;
+    }
+
+    .connect a.login {
+        font-size: 21px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 1200px) {
+    .questionnaire_question {
+        height: 1040px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 1400px) {
+    .questionnaire_question {
+        height: 1240px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 1600px) {
+    .questionnaire_question {
+        height: 1440px;
+    }
+}

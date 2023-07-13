@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supression d'une catégorie de question{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/deleteCategorieQuestion.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="all_txt">
+        <a href="{{ path('app_categorieQuestion') }}">Retour à la liste des catégories de question<span class="material-icons">reply</span></a>
+        <div class="avertissement">
+            <p>Supression de la catégorie de question : {{ categorieQuestion.Nom }}</p>
+            <p>Attention ! Si vous validez cette action, toutes les questions et conseils reliés à cette catégorie ne le seront plus.</p>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+{% endblock %}

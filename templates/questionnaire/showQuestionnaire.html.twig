@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questionnaire {{ questionnaire.Nom }}{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/Questionnaire.css') }}"> {% endblock %}
+
+{% block body %}
+    {% set onlyOnce = true %}
+    <h1>Questionnaire {{ questionnaire.Nom }}</h1>
+    {% if issue %}
+        <p>Une erreure s'est produite lors de l'envoie de vos réponses à ce questionnaire, veuillez recommencer.</p>
+    {% endif %}
+    <div class="questionnaire_questions">
+    {% set roleAccess = false %}
+    {% if app.user != null %}
+        {% for roleUser in app.user.roles %}
+            {% if roleUser in questionnaire.roleConnecte
+                or questionnaire.roleConnecte == []
+                or roleUser == "ROLE_ADMIN" %}
+                {% set roleAccess = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% set thereIsQuestion = questionnaire.partieConnecte != 1 or roleAccess %}
+    <form action="{{ path('app_questionnaire_id_resultat', {id: questionnaire.id}) }}" method="post">
+    {% set isOnAllQuestionnaire = app.user.roles is defined
+           and (roleAccess)
+           or questionnaire.partieConnecte == null
+           or questionnaire.partieConnecte <= 0 %}
+    {% for question in questions %}
+        {% if isOnAllQuestionnaire
+              or question.numero < questionnaire.partieConnecte %}
+        <div class="questionnaire_question" id="{{ question.numero }}">
+            <div class="question_txt">
+                <h2>Question n°{{ question.numero }}/{% if isOnAllQuestionnaire %}{{ nbQuestion }}{% else %}{{ nbQuestionNoConnect }}{% endif %}</h2>
+                <h3>{{ question.txtQuestion }}</h3>
+            </div>
+            <div class="questionnaire_reponses_question">
+                {% for reponse in reponses[question.id] %}
+                    <div class="questionnaire_reponse">
+                        <input required
+                               value="{{ reponse.id }}"
+                               type="radio"
+                               name="reponseQuestionID_{{ question.id }}"
+                               {% if UserRep != [] and reponse in UserRep %}checked="checked"{% endif %}/>
+                        <label for="reponseQuestionID_{{ question.id }}">{{ reponse.txtReponse }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="question_nextAndPast">
+                {% if question.numero != 1 %}
+                    <a href="#{{ question.numero - 1 }}" id="past">Question précédente<span class="material-icons">navigate_before</span></a>
+                {% endif %}
+                {% if isOnAllQuestionnaire ? question.numero < nbQuestion : question.numero < nbQuestionNoConnect %}
+                    <a href="#{{ question.numero + 1 }}" id="next">Question suivante<span class="material-icons">navigate_next</span></a>
+                {% else %}
+                    <button type="submit" id="submit2">Valider vos réponses<span class="material-icons">check</span></button>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+            {% if onlyOnce %}
+                {% set onlyOnce = false %}
+                <div class="connect">
+                    <p>Pour pouvoir {% if thereIsQuestion %}continuer{% else %}commencer{% endif%} ce questionnaire, veuillez vous connecter. Vous pouvez malgré tout, valider vos réponses.</p>
+                    {% if questionnaire.roleConnecte != [] and questionnaire.roleConnecte != ["ROLE_USER"] %}
+                        <p><span class="material-icons">warning</span>
+                            Attention vous devez être :
+                            {% for role in questionnaire.roleConnecte %}
+                                {{ translationRole[role] }}{% if loop.index != questionnaire.roleConnecte|length %} ou {% endif %}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                    <a class="login"
+                       href="{{ path('app_login', {target_path: path('app_questionnaire_id', {id: questionnaire.id}) }) }}">
+                        Se Connecter
+                        <span class="material-icons">login</span>
+                    </a>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+        {% if thereIsQuestion %}
+            <button type="submit" id="submit1">Valider vos réponses<span class="material-icons">check</span></button>
+        {% endif %}
+    </form>
+    </div>
+{% endblock %}

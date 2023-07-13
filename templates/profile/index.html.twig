@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile de {{ app.user.firstname }} {{ app.user.lastname }}{% endblock %}
+
+{% block body %}
+        <style>
+                .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+                .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        </style>
+
+        {% block stylesheets %}<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}" />{% endblock %}
+        <div class="example-wrapper">
+                <div class="profile">
+                        {% for message in app.flashes('message') %}
+                                <div class="message-alerte-modif">
+                                        <div class="p-3 my-2 rounded-2 success">{{ message }}</div>
+                                </div>
+                        {% endfor %}
+                        <h1 class="nom-user"> {{ app.user.firstname }} {{ app.user.lastname }}</h1>
+                        <ul class="info">
+                                <img class="avatar-user" src="data:image/png;base64,{{ avatar }}">
+                                <li class="pseudo-user"><strong>Pseudo</strong> : {{ app.user.pseudo }}</li>
+                                <li class="mail-user"><strong>Email</strong> : {{ app.user.email }}</li>
+                                <li class="description-user"><strong>Description</strong> : {{ app.user.description }}</li>
+                                <li class="adresse"> <strong>Adresse professionnelle</strong> :
+                                <ul>
+                                        <li class="adresse-user"><strong>Adresse</strong> : {{ app.user.address }}</li>
+                                        <li class="CP-user"><strong>Code Postal</strong> : {{ app.user.cp }}</li>
+                                </ul>
+                                        </li>
+                                <li class="tel-user"><strong>Tél</strong> : {{ app.user.telUser }}</li>
+
+
+                                {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                                        <li class="role-admin-user"><strong>Rôle</strong> : Admin</li>
+                                {% endif %}
+                                {% if app.user and 'ROLE_VIGNERON' in app.user.roles %}
+                                        <li class="role-vigneron-user"><strong>Rôle</strong> : Vigneron</li>
+                                {% endif %}
+                                {% if app.user and 'ROLE_FOURNISSEUR' in app.user.roles %}
+                                        <li class="role-vigneron-user"><strong>Rôle</strong> : Fournisseur</li>
+                                {% endif %}
+                                {% if app.user and 'ROLE_PRESTATAIRE' in app.user.roles %}
+                                        <li class="role-prestataire-user"><strong>Rôle</strong> : Prestataire</li>
+                                {% endif %}
+                        </ul>
+                        <div>
+                                <a href="{{ path('app_profile_modif') }}" class="modify-profil-link">Modifier le profil</a>
+                                <a href="{{ path('app_profile_modif_pass') }}" class="modify-pass-link">Modifier le mot de passe</a>
+                        </div>
+
+                        <div class="user-related-conv">
+                                <div class="sujets-user">
+                                        <dl class="sujets-user-title">Vos sujets : </dl>
+                                        {% for sujet in app.user.sujets %}
+                                                <li>{{ sujet.titre }} <span class="date">{{ sujet.lastMessageDate|date("G\\:\i\\, \\l\\e d/m/Y") }}</span></li>
+                                                <br>
+                                        {% endfor %}
+                                </div>
+                                <div class="messages-user">
+                                        <dl class="messages-user-title">Vos messages : </dl>
+                                        {% for message in app.user.messages %}
+                                                <li>{{ message.contenu }} <span class="date">{{ message.dateMessage|date("G\\:\i\\, \\l\\e d/m/Y") }}</span></li>
+                                                <br>
+                                        {% endfor %}
+                                </div>
+                                <div class="reponses-user">
+                                        {% if questionnaires|length > 0 %}
+                                                <dl class="reponses-user-title">Vos réponses aux questionnaires : </dl>
+                                                {{ include('_ReponseAndResult.html.twig') }}
+                                        {% endif %}
+                                </div>
+                        </div>
+                </div>
+        </div>
+{% endblock %}

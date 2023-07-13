@@ -1,0 +1,78 @@
+
+/*
+Tout le formulaire
+ */
+
+.form__update{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    font-size: 20px;
+}
+
+
+/*
+Le texte du formulaire
+ */
+
+p{
+    font-size: 25px;
+    margin-top: 50px;
+}
+
+/*
+Les éléments qui composent le formulaire
+ */
+body > div.body-container > div > form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+
+form > div > div{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/**
+Bouton de validation de changement
+ */
+
+.btn {
+    border: 2px solid whitesmoke;
+    background-color: lightgray;
+    border-radius: 0.9em;
+    margin: 20px;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #009087;
+    color: whitesmoke;
+}
+
+input:not(:first-child){
+    padding: 5px;
+    margin-top: 15px;
+    font-size: 20px;
+    width: 600px;
+}
+
+#ressource_descriptif, #actualite_description{
+    width: 900px;
+    height: 120px;
+    margin: 10px;
+    max-width: 900px;
+    max-height: 120px;
+    min-width: 500px;
+    min-height: 50px;
+}

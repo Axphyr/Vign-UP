@@ -1,0 +1,104 @@
+.body-container {
+    width: 100%;
+}
+
+.show_categorie p {
+    margin: 0;
+}
+
+.show_categorie {
+    margin: 21px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.categorie_presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+    margin-bottom: 50px;
+}
+
+.categorie_presentation p#nom {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.categorie_presentation p#description {
+    font-size: 16px;
+    color: gray;
+}
+
+.categorie_questionnaire {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+div.questionnaire {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid gray;
+    border-radius: 25px;
+    padding: 15px;
+    gap: 15px;
+}
+
+div.questionnaire p#nom {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+div.questionnaire p#question, div.questionnaire p#conseil {
+    font-size: 17px;
+    color: gray;
+    margin-top: 35px;
+}
+
+div.questionnaire_question, div.questionnaire_conseil {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.questionnaire a, .show_categorie a {
+    color: #0060da;
+    text-decoration: none;
+    display: flex;
+    font-size: 19px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+@media screen and (min-width: 1000px) {
+    .questionnaire {
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+
+    div.questionnaire p#nom {
+        font-size: 35px;
+    }
+
+    .questionnaire a {
+        font-size: 24px;
+    }
+
+    .categorie_presentation p#nom {
+        font-size: 32px;
+    }
+
+    .categorie_presentation p#description {
+        font-size: 23px;
+    }
+
+    .show_categorie p#libelle {
+        margin: 15px;
+        font-size: 21px;
+    }
+}

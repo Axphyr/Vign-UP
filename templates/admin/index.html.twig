@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_title %}
+    Espace Administrateur
+{% endblock %}
+{% block page_content %}
+    <form action="{{ url('app_home') }}">
+        <button type="submit">Retour au site</button>
+    </form>
+    <h1>Accéder aux demandes de points VSL</h1>
+    <form action="{{ url('admin_vsl') }}">
+        <button type="submit">Accéder</button>
+    </form>
+{% endblock %}

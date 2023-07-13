@@ -1,0 +1,200 @@
+
+/*
+Liste boutons vers autres pages
+ */
+
+.button__ressource {
+    border-bottom: whitesmoke solid 1px;
+}
+
+/**
+Couleur des text avec un lien
+ */
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+
+}
+
+/**
+Titre de couverture
+ */
+
+.ressource__header {
+    text-align: center;
+    background-color: #1f751e;
+    padding: 39px;
+    margin-top: 0;
+}
+
+.ress__titre {
+    font-size: 21px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/**
+L'ensemble des ressources
+ */
+
+.list__ressources {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/**
+Ressources et boutons de ressources compris
+ */
+
+.ress__with__buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 5px;
+    background-color: #258B23;
+    border: whitesmoke solid 1px;
+    border-radius: 10px;
+}
+
+/**
+Boutons des ressources
+ */
+
+.ress__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.ress__buttons > a {
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+}
+
+/**
+Ressources
+ */
+
+.ressources {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    background: whitesmoke;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+}
+
+.ressources:active {
+    color: #666;
+}
+
+.ressources:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.ressources:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #009087;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.4s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.ressources:hover {
+    color: #ffffff;
+    border: 1px solid #009087;
+}
+
+.ressources:hover:before {
+    top: -35%;
+    background-color: #009087;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.ressources:hover:after {
+    top: -45%;
+    background-color: #009087;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/**
+Bouton de suppression d'une ressource
+ */
+
+.material-icons {
+    font-size: 30px;
+}
+
+.ress__delete:hover {
+    color: red;
+}
+
+/**
+Bouton de modification d'une ressource
+ */
+
+.ress__edit:hover {
+    color: cornflowerblue;
+}
+
+/**
+Bouton de création de ressources
+ */
+
+.form__creer {
+    border: 2px solid whitesmoke;
+    background-color: lightgray;
+    border-radius: 0.9em;
+    margin: 20px;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form__creer:hover {
+    background-color: #009087;
+    color: whitesmoke;
+}
+
+.create__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button__ressource{
+    border-bottom: whitesmoke solid 1px;
+}

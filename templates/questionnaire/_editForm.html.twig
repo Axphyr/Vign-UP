@@ -1,0 +1,43 @@
+{% extends 'questionnaire/_edit.html.twig' %}
+
+{% block body %}
+    <div class="questionnaire_title">
+        <h1>{% block title_form %}{% endblock %}</h1>
+    </div>
+    {{ form_start(form) }}
+        <div class="helper">
+            <p>Vous pouvez définir ici les propriétés de base d'un questionnaire.</p>
+        </div>
+        <div class="questionnaire_options">
+            {{ form_row(form.Nom) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.partieConnecte) }}
+            {{ form_row(form.roleConnecte) }}
+            {{ form_row(form.imagePresentation) }}
+            {% if questionnaire is not null %}
+                {% if imagePresentation is not null %}
+                    <i>Voici l'image de présentation déjà mise en place dans ce questionnaire.</i>
+                    <i>Si vous voulez la remplacer, je vous prie de sélectionner une image en cliquant sur Parcourir...</i>
+                    <img alt="Image de présentation du questionnaire" src="data:image/png;base64,{{ imagePresentation }}"/>
+                {% else %}
+                    <i>Pas encore d'image de présentation.</i>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="helper">
+            <p>Vous pouvez insérer ici les questions qui seront dans ce questionnaire.</p>
+        </div>
+        <div class="questionnaire_all_questions">
+            <button class='button_add' type="button" onclick="clickAddItem('#questionnaire_Questions')">Ajouter une question <span class="material-icons">add_circle</span></button>
+            {{ form_row(form.Questions) }}
+        </div>
+        <div class="helper">
+            <p>Vous pouvez insérer ici les conseils qui seront afficher en fonction des résultats de l'utilisateur à ce questionnaire.</p>
+        </div>
+        <div class="questionnaire_all_conseils">
+            <button class='button_add' type="button" onclick="clickAddItem('#questionnaire_Conseils')">Ajouter un conseil <span class="material-icons">add_circle</span></button>
+            {{ form_row(form.Conseils) }}
+        </div>
+        <button type="submit">Valider la {% block submit_button %}{% endblock %} <span class="material-icons">check</span></button>
+    {{ form_end(form) }}
+{% endblock %}

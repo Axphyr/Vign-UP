@@ -1,0 +1,23 @@
+{% for questionnaire in questionnaires %}
+    <div class="questionnaire">
+        <p class="questionnaire-name">Questionnaire : {{ questionnaire.Nom }}</p>
+        {% if tabReponsesUser[questionnaire.id]|length > 0 %}
+            {% for question in questionnaire.questions %}
+                {% if question.numero in tabReponsesUser[questionnaire.id]|keys %}
+                    <p class="question-questionnaire">Question n°{{ question.numero }}</p>
+                    <p class="reponse-questionnaire"><span class="selected-answer-questionnaire">Réponse sélectionnée : {{ tabReponsesUser[questionnaire.id][question.numero].txtReponse }}</span></p>
+                {% endif %}
+            {% endfor %}
+            {% if user is defined %}
+                <a href="{{ path('app_questionnaire_id_resultat_user', {id: questionnaire.id, idUser: user.id}) }}">Voir les notes et conseils.<span class="material-icons">visibility</span></a>
+            {% else %}
+                <a href="{{ path('app_questionnaire_id_resultat', {id: questionnaire.id}) }}">Voir vos notes et conseils relier à ces réponses.<span class="material-icons">visibility</span></a>
+            {% endif %}
+        {% else %}
+            <p class="no-response-questionnaire">Pas de réponses pour ce questionnaire</p>
+            {% if user is not defined %}
+                <a class="answer-it-questionnaire" href="{{ path('app_questionnaire_id', {id: questionnaire.id}) }}">Y répondre !</a>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endfor %}

@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_title %}
+    Demandes VSL : Accepter
+{% endblock %}
+{% block page_content %}
+    <form action="{{ url('app_home') }}">
+        <button type="submit">Retour au site</button>
+    </form>
+    <h1>Acceptation d'un point VSL</h1>
+    <p>Vous pouvez vérifier et modifier les valeurs ici :</p>
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+{% endblock %}

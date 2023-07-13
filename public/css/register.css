@@ -1,0 +1,35 @@
+.user-prenom label,.user-nom label,.user-email label,.user-pseudo label,.user-roles,.user-pass label,.user-tel label,.user-address label,.user-cp label,.user-terms label{
+    font-weight: bold;
+    margin: 5px;
+}
+
+.user-roles div{
+    font-weight: normal;
+}
+
+.btn{
+    margin: 10px;
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0 solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 221px;
+    gap: 5px;
+}
+
+.body-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

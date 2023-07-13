@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/UpdateCategorieQuestion.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="update_categorie_question">
+        <a href="{{ path('app_categorieQuestion') }}">Retour à la liste des catégories de question<span class="material-icons">reply</span></a>
+        <h1>{% block title_form %}{% endblock %}</h1>
+        {{ form_start(form) }}
+            {{ form_row(form.Nom) }}
+            {{ form_row(form.description) }}
+        <button type="submit">Valider la {% block submit_button %}{% endblock %}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

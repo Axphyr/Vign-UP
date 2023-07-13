@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le Forum{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/forumstyle.css') }}"> {% endblock %}
+
+{% block body %}
+
+    <div class="forum__header">
+        <div class="foru__titre"> Forum </div>
+    </div>
+
+    <div class="forum">
+
+        <div class="top_bar">
+            <div class="top_bar_items">
+                    <form class="top_bar_refresh">
+                        <button onClick="window.location.reload();">Rafraîchir la page</button>
+                    </form>
+                    <form class="search_bar" role="search" method="get" action="{{ path('app_forum') }}">
+                        <input name="topic_search" type="text" aria-label="Search" placeholder="Chercher un sujet" value="{{ search|default('') }}">
+                        <select name="search_type">
+                            <option value="title">Titre</option>
+                            <option value="author">Auteur</option>
+                        </select>
+                        <button id="sub" type="submit" >Chercher</button>
+                    </form>
+                    <a href="#new" class="top_bar_new_topic">
+                        <input type="button" value="Nouveau Sujet" />
+                    </a>
+            </div>
+        </div>
+        <div class="topic_list">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Sujet</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Dernier message</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for topic in topics %}
+                    {% set user = topic.user  %}
+                    <tr id="topic">
+                        <td><a href="{{ path('app_forum_topic', {id: topic.id}) }}">{{topic.titre}}</a></td>
+                        <td>{{ user.pseudo }}</td>
+                        <td>{{ topic.lastMessageDate|date("G\\:\i\\, \\l\\e d/m/Y") }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            {% if topics|length == 0 %}
+                <p class="no_topics_message">Aucun sujet trouvé.</p>
+            {% endif %}
+        </div>
+        <div class="bottom_bar">
+            {% if page != 1 %}
+                <form method="get" action="{{ path('app_forum') }}">
+                    <label>
+                        <input type="number" name="page" value="{{ page-1 }}" hidden>
+                    </label>
+                    <button type="submit">Page précédente</button>
+                </form>
+            {% endif %}
+            {% if not lastPage %}
+                <form method="get" action="{{ path('app_forum') }}" class="next_page_button">
+                    <label>
+                        <input type="number" name="page" value="{{ page+1 }}" hidden>
+                    </label>
+                    <button type="submit">Page suivante</button>
+                </form>
+            {% endif %}
+        </div>
+        <div class="forum_new_topic" id="new">
+            <h1>Nouveau sujet</h1>
+            <h3>Titre du sujet</h3>
+            <div class="forum_new_topic_form">
+                {{ form_start(form) }}
+                <div class="new_topic_form_title">
+                    {{ form_row(form.titre, {'label': ' '}) }}
+                    <h3>Message</h3>
+                    {{ form_row(form.messages, {'label': ' '}) }}
+                </div>
+                <button id="pub" type="submit" class="btn btn-primary">Publier</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

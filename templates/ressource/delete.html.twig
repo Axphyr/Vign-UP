@@ -1,0 +1,17 @@
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/delete.css') }}" />
+{% endblock %}
+
+<title>Suppression d'une ressource</title>
+
+{% block body %}
+
+    <div class="form__del">
+    <p> Voulez-vous vraiment supprimer la ressource <strong>{{ ressource.nomRessource }}</strong> ?</p>
+
+        <div class="del__buttons">
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

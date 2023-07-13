@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if not Request and not Data %}
+        Pas encore répondu à ce questionnaire !
+    {% else %}
+        Voici vos résultats à ce questionnaire !
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/ResultQuestionnaire.css') }}"> {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/QuestionnaireResult.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1>Voici {% if adminView %}les résultats d'un utilisateur{% else %}vos résultats{% endif %} à ce questionnaire {{ questionnaire.Nom }}!</h1>
+    <div class="info">
+        {% if adminView and user != null %}
+            <p><span class="material-icons">warning</span>Vue admin !</p>
+            <p>Vous voyez actuellement les résultats de l'utilisateur avec pour id : {{ user.id }}, nom : {{ user.lastName }}, prenom : {{ user.firstName }}.</p>
+            <a href="{{ path('app_profile_show', {id: user.id}) }}">Voir/Retour au profile de cette utilisateur<span class="material-icons">reply</span></a>
+        {% else %}
+            {% if Connect %}
+                {% if not Request and not Data %}
+                    <p><span class="material-icons">warning</span>Vous n'avez pas encore répondu à ce questionnaire !</p>
+                    <a href="{{ path('app_questionnaire_id', {id: questionnaire.id}) }}">Y répondre !</a>
+                {% else %}
+                    <span class="material-icons" id="info">info</span><p>
+                        {% if Request %}
+                            Les réponses à ce questionnaire vont être enregistré.
+                        {% else %}
+                            Ces réponses sont extraites des réponses qui ont étaient enregistré sur votre compte.
+                        {% endif %}
+                    </p>
+                {% endif %}
+            {% else %}
+                {% if Request %}
+                    <span class="material-icons" id="info">info</span><p>Vous n'êtes pas connecté, vos réponses ne seront donc pas enregistrées.</p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if Request or Data %}
+        <div class="conseils">
+        {% if conseils == [] %}
+            <p id="first">Aucun conseil(s) n'est disponible voici vos résultats :</p>
+            {% if AllQuestionnaire %}
+                {% for categorie in tabNoteReponses|keys %}
+                    {% if categorie != "noteTotal" and categorie != "null" %}
+                        <div class="note">
+                            <p class="icons_category"><span class="material-icons">navigate_next</span>Catégorie {{ categorie }} : </p><span id="data">{{ tabNoteReponses[categorie] }}/{{ tabNoteQuestionnaire[categorie] }}</span>
+                            <div class="sidebar_note"></div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% elseif conseils|length >= 1 %}
+            {% if conseils|length == 1 and 0 in conseils|keys %}
+                <div class="conseil">
+                    <p class="icons_category"><span class="material-icons">navigate_next</span>Unique conseil global sur la première partie du questionnaire : </p><span class="conseil_txt">{{ conseils[0].txtConseil }}</span>
+                </div>
+            {% else %}
+                <p id="first">Conseil(s) avec vos résultats :</p>
+                {% for categorie in tabNoteQuestionnaire|keys %}
+                    {% if categorie != "noteTotal" and categorie != "null" %}
+                        {% if categorie in conseils|keys and conseils[categorie].categorieQuestion.description != null %}
+                            <div class="categorie_description">
+                                <i>Description de la catégorie {{ categorie }} : {{ conseils[categorie].categorieQuestion.description }}</i>
+                            </div>
+                        {% endif %}
+                        <div class="conseil">
+                            <p class="icons_category"><span class="material-icons">navigate_next</span>Catégorie <span class="categorie_nom">{{ categorie }}</span> : </p>
+                                {% if categorie in conseils|keys %}
+                                    <span class="conseil_txt">{{ conseils[categorie].txtConseil }}</span>
+                                {% else %}
+                                    <span class="conseil_txt">pas de conseil dans cette catégorie.</span>
+                                {% endif %}
+                            <div class="note">
+                                <p>Votre note dans cette catégorie: <span id="data">{{ tabNoteReponses[categorie] }}/{{ tabNoteQuestionnaire[categorie] }}</span></p>
+                                <div class="sidebar_note"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="conseil">
+                    <p class="icons_category"><span class="material-icons">navigate_next</span>Conseil <span class="categorie_nom">global</span> : </p>
+                        {% if 'noteTotal' in conseils|keys %}
+                            <span class="conseil_txt">{{ conseils['noteTotal'].txtConseil }}</span>
+                        {% else %}
+                            <span class="conseil_txt">pas de conseil global.</span>
+                        {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+        </div>
+        <div class="notes_global">
+            {% if tabNoteQuestionnaire['null'] > 0 and 'null' in tabNoteReponses|keys %}
+                <div class="note">
+                    <p>Or catégorie: <span id="data">{{ tabNoteReponses['null'] }}/{{ tabNoteQuestionnaire['null'] }}</span></p>
+                    <div class="sidebar_note"></div>
+                </div>
+            {% endif %}
+            <div class="note" id="note_total">
+                <p>Note total: <span id="data">{{ tabNoteReponses['noteTotal'] }}/{{ tabNoteQuestionnaire['noteTotal'] }}</span></p>
+                <div class="sidebar_note"></div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

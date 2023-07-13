@@ -1,0 +1,15 @@
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/delete.css') }}" />
+{% endblock %}
+{% block body %}
+
+    <div class="form__del">
+        <p>Voulez-vous vraiment supprimer le questionnaire : <strong>{{ questionnaire.nom }}</strong> ?</p>
+        <p>Attention ! Si vous validez cette action, toutes les réponses, questions et conseils affiliés à ce questionnaire seront également suprimé. Confirmer ? </p>
+
+        <div class="del__buttons">
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

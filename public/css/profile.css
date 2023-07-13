@@ -1,0 +1,80 @@
+.avatar-user{
+    border: 2px solid #258B23;
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    border-radius: 100%;
+}
+
+.messages-user,.sujets-user,.reponses-user{
+    border: 2px solid #258B23;
+    overflow: auto;
+    margin: 5px;
+    max-height: 150px;
+}
+
+.messages-user-title,.sujets-user-title,.reponses-user-title{
+    background-color: #258B23;
+    border: 2px solid #258B23;
+    color: white;
+    margin: 5px;
+}
+
+
+
+
+li{
+    margin: 5px;
+}
+
+.date{
+    font-weight: bold;
+}
+
+.question-questionnaire{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.questionnaire-name{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+
+p{
+    margin: 5px;
+}
+
+.selected-answer-questionnaire{
+    font-style: italic;
+}
+
+a.answer-it-questionnaire,a.modify-pass-link,a.modify-profil-link{
+    margin: 5px;
+    color: #258B23;
+    text-decoration: none;
+}
+
+.info{
+    padding : 5px;
+    margin: 5px;
+    border: 2px solid #258B23;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+
+}
+
+.message-alerte-modif{
+    background-color: #258B23 ;
+    border: 2px solid #258B23;
+    color: white;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.button__user{
+    border-bottom: whitesmoke solid 1px;
+}

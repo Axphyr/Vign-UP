@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie {{ categorieQuestion.Nom }}{% endblock %}
+
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/showCategorieQuestion.css') }}"> {% endblock %}
+
+{% block body %}
+    <div class="show_categorie">
+        <a href="{{ path('app_categorieQuestion') }}">Retour à la liste des catégories de question<span class="material-icons">reply</span></a>
+        <div class="categorie_presentation">
+            <p id="nom">Catégorie {{ categorieQuestion.Nom }}</p>
+            <p id="description">{{ categorieQuestion.description }}</p>
+        </div>
+        <p id="libelle">Voici les questionnaires où cette catégorie est présente :</p>
+        <div class="categorie_questionnaire">
+            {% for questionnaire in questionnaires %}
+                <div class="questionnaire">
+                    <a href="{{ path('app_questionnaire_update', {'id': questionnaire.id}) }}">Modifier<span class="material-icons">edit</span></a>
+                    <p id="nom">Questionnaire : {{ questionnaire.Nom }}</p>
+                    <p id="question">Les questions de ce questionnaire reliées à cette catégorie :</p>
+                    <div class="questionnaire_questions">
+                        {% if questionnaireQuest[questionnaire.id]|length > 0 %}
+                            {% for question in questionnaireQuest[questionnaire.id] %}
+                                <div class="questionnaire_question">
+                                    <p>Question n°{{ question.numero }}</p>
+                                    <p>{{ question.txtQuestion }}</p>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p id="noData">Cette catégorie n'est reliée à aucune question de ce questionnaire.</p>
+                        {% endif %}
+                    </div>
+                    <p id="conseil">Les conseils de ce questionnaire reliés à cette catégorie :</p>
+                    <div class="questionnaire_conseils">
+                        {% if questionnaireConseil[questionnaire.id]|length > 0 %}
+                            {% for conseil in questionnaireConseil[questionnaire.id] %}
+                                <div class="questionnaire_conseil">
+                                    <p>{{ conseil.txtConseil }}</p>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p id="noData">Cette catégorie n'est reliée à aucun conseil de ce questionnaire.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

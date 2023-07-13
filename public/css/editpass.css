@@ -1,0 +1,38 @@
+.label-pass{
+    font-weight: bold ;
+}
+
+.form-control{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    align-items: center;
+    border: 2px solid green;
+    border-radius: 25px;
+}
+
+.submit-edit-pass {
+    background: #1cab3a linear-gradient(to right, #1cab3a, #2bbe72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 0 solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 221px;
+    gap: 5px;
+}
+
+.form-field,.form-oublie-mdp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
